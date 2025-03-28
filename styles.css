@@ -8,6 +8,8 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    padding-top: 20px; /* Add padding to the top */
+    box-sizing: border-box; /* Ensure padding doesn't affect layout */
 }
 
 .main-container {
