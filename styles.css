@@ -1,0 +1,389 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background: #f9f5f2;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.main-container {
+    text-align: center;
+    max-width: 800px;
+    width: 90%;
+}
+
+.main-header h1 {
+    font-size: 2.5rem;
+    margin: 0;
+    color: #000;
+}
+
+.main-header p {
+    font-size: 1.2rem;
+    color: #555;
+    margin: 10px 0 20px;
+}
+
+.input-container {
+    margin-top: 20px;
+}
+
+.input-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    padding: 10px 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.input-bar input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    padding: 5px 10px;
+    margin-right: 10px;
+}
+
+.input-bar .send-btn {
+    background: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.input-bar .send-btn:hover {
+    background: #0056b3;
+}
+
+.action-buttons {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.action-btn {
+    background: #f1f1f1;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background 0.3s, box-shadow 0.3s;
+}
+
+.action-btn:hover {
+    background: #e0e0e0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.main-footer {
+    margin-top: 30px;
+    font-size: 0.9rem;
+    color: #888;
+}
+
+.main-footer a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.main-footer a:hover {
+    text-decoration: underline;
+}
+
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f9f5f2;
+}
+
+.auth-form {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.auth-form h2 {
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 1.5rem;
+}
+
+.auth-form input {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.auth-form button {
+    padding: 10px 20px;
+    background: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s;
+}
+
+.auth-form button:hover {
+    background: #0056b3;
+}
+
+.auth-form p {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.auth-form a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.auth-form a:hover {
+    text-decoration: underline;
+}
+
+.chat-box {
+    height: 300px;
+    overflow-y: auto;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
+    color: #333;
+}
+
+.chat-box p {
+    margin: 5px 0;
+}
+
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+.login-btn {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px; /* Reduced padding */
+    font-size: 0.8rem; /* Slightly smaller font size */
+    cursor: pointer;
+    transition: background 0.3s;
+    z-index: 1000; /* Ensure it appears above other elements */
+}
+
+.login-btn:hover {
+    background: #0056b3;
+}
+
+.menu-btn {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+    z-index: 1000;
+}
+
+.menu-btn:hover {
+    background: #0056b3;
+}
+
+.menu-list {
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    list-style: none;
+    padding: 10px;
+    margin: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.menu-list li {
+    margin: 5px 0;
+}
+
+.menu-list a {
+    text-decoration: none;
+    color: #007BFF;
+    font-size: 0.9rem;
+}
+
+.menu-list a:hover {
+    text-decoration: underline;
+}
+
+.menu-feedback-btn {
+    background: none;
+    border: none;
+    color: #007BFF;
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-align: left;
+    padding: 0;
+}
+
+.menu-feedback-btn:hover {
+    text-decoration: underline;
+}
+
+/* Day Theme (Default) */
+body.day-theme {
+    background: #f9f5f2;
+    color: #333;
+}
+
+.main-container.day-theme {
+    background: #ffffff;
+    color: #333;
+}
+
+/* Night Theme */
+body.night-theme {
+    background: #1e1e1e;
+    color: #f1f1f1;
+}
+
+.main-container.night-theme {
+    background: #2e2e2e;
+    color: #f1f1f1;
+}
+
+.input-bar.night-theme {
+    background: #3e3e3e;
+    border: 1px solid #555;
+}
+
+.chat-box.night-theme {
+    background: #3e3e3e;
+    border: 1px solid #555;
+}
+
+.action-btn.night-theme {
+    background: #444;
+    border: 1px solid #666;
+    color: #f1f1f1;
+}
+
+.action-btn.night-theme:hover {
+    background: #555;
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.2);
+}
+
+.home-buttons {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.home-btn {
+    background: #007BFF;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: background 0.3s, box-shadow 0.3s;
+}
+
+.home-btn:hover {
+    background: #0056b3;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.features, .about {
+    margin-top: 30px;
+    text-align: left;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.features h2, .about h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #007BFF;
+}
+
+.features ul {
+    list-style: disc;
+    margin-left: 20px;
+}
+
+.features ul li, .about p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+/* Animations */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

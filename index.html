@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chatbot</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="main-container">
+        <header class="main-header">
+            <button id="menu-btn" class="menu-btn" style="position: absolute; top: 10px; right: 10px;">☰</button>
+            <ul id="menu-list" class="menu-list" style="display: none;">
+                <li><a href="login.html" id="login-link">Login</a></li>
+                <li><a href="terms.html">Terms and Conditions</a></li>
+                <li><a href="privacy.html">Privacy Policy</a></li>
+                <li><button id="feedback-btn" class="menu-feedback-btn">Give Feedback</button></li>
+                <li><label>
+                    <input type="checkbox" id="model-training-text" checked> Model training on text
+                </label></li>
+                <li><label>
+                    <input type="checkbox" id="model-training-voice" checked> Model training on voice
+                </label></li>
+                <li><label>
+                    <input type="checkbox" id="personalisation" checked> Personalisation
+                </label></li>
+                <li>
+                    <label for="language-select">Language:</label>
+                    <select id="language-select">
+                        <option value="en" selected>English</option>
+                        <option value="ar">Arabic</option>
+                        <option value="eu">Basque</option>
+                        <option value="bn">Bengali</option>
+                        <option value="bg">Bulgarian</option>
+                        <option value="ca">Catalan</option>
+                        <option value="zh">Chinese (Simplified)</option>
+                        <option value="zh">Chinese (Traditional)</option>
+                        <option value="hr">Croatian</option>
+                        <option value="cs">Czech</option>
+                        <option value="da">Danish</option>
+                        <option value="nl">Dutch</option>
+                        <option value="et">Estonian</option>
+                        <option value="fi">Finnish</option>
+                        <option value="fr">French</option>
+                        <option value="de">German</option>
+                        <option value="hi">Hindi</option>
+                        <!-- Add remaining languages here... -->
+                    </select>
+                </li>
+                <li>
+                    <label for="theme-select">Theme:</label>
+                    <select id="theme-select">
+                        <option value="day" selected>Day</option>
+                        <option value="night">Night</option>
+                    </select>
+                </li>
+            </ul>
+            <h1>Hi <span id="user-name">there</span>! Artificial Intelligence here.</h1>
+            <p>What’s on your mind today?</p>
+        </header>
+        <div class="input-container">
+            <div class="chat-box">
+                <!-- Chat messages will appear here -->
+            </div>
+            <div class="input-bar">
+                <input type="text" id="user-input" placeholder="Message Copilot" />
+                <button id="send-btn" class="send-btn">➤</button>
+            </div>
+            <div class="action-buttons">
+                <button class="action-btn">Write a first draft</button>
+                <button class="action-btn">Get advice</button>
+                <button class="action-btn">Learn something new</button>
+                <button class="action-btn">Create an image</button>
+                <button class="action-btn">Make a plan</button>
+                <button class="action-btn">Brainstorm</button>
+                <button class="action-btn">Practise a language</button>
+                <button class="action-btn">Take a quiz</button>
+            </div>
+        </div>
+        <footer class="main-footer">
+            <p>Artificial Intelligence may make mistakes.</p>
+        </footer>
+        <footer class="main-footer">
+            <p>By interacting with Artificial Intelligence, you agree to the <a href="terms.html">Terms of Use</a>. See our <a href="privacy.html">Privacy Statement</a>.</p>
+        </footer>
+    </div>
+    <script src="responses.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
