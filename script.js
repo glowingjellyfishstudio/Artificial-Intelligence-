@@ -1,7 +1,7 @@
 let lastMessage = '';
 let spamCount = 0;
 
-const rudeWords = ['fuck', 'shit', 'ass', 'loser', 'bad']; // Add more rude words here
+const rudeWords = ['bad']; // Simplified list of rude words
 
 document.getElementById('send-btn').addEventListener('click', sendMessage);
 
