@@ -7,7 +7,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: auto; /* Allow the body height to adjust based on content */
+    overflow-y: auto; /* Enable vertical scrolling if content overflows */
     padding-top: 20px; /* Add padding to the top */
     box-sizing: border-box; /* Ensure padding doesn't affect layout */
 }
