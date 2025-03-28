@@ -377,6 +377,13 @@ body.night-theme {
     color: #555;
 }
 
+.features ul li {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    color: #555;
+    line-height: 1.5; /* Improve readability */
+}
+
 /* Animations */
 .fade-in {
     opacity: 0;
