@@ -65,20 +65,6 @@ document.getElementById('use-login-key-btn').addEventListener('click', () => {
             alert('No file selected.');
             return;
         }
-    }
-});
-
-document.getElementById('use-login-key-btn').addEventListener('click', () => {
-    const fileInput = document.createElement('input');
-    fileInput.type = 'file';
-    fileInput.accept = '.txt';
-
-    fileInput.addEventListener('change', (event) => {
-        const file = event.target.files[0];
-        if (!file) {
-            alert('No file selected.');
-            return;
-        }
 
         const username = file.name.replace('.txt', '').trim(); // Extract username from file name
         const reader = new FileReader();
