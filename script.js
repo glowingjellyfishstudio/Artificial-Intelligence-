@@ -374,6 +374,7 @@ addTranslation('es', {
 
 function updateAuthMenu() {
     const loginLink = document.getElementById('login-link');
+    const adminPanelBtn = document.getElementById('admin-panel-btn');
     const loggedInUser = sessionStorage.getItem('loggedInUser');
 
     if (loggedInUser) {
@@ -385,11 +386,78 @@ function updateAuthMenu() {
             alert('You have been signed out.');
             window.location.reload(); // Reload the page to reset the state
         });
+
+        // Show Admin Panel button only for "ADMINISTRATOR"
+        if (loggedInUser === 'ADMINISTRATOR') {
+            adminPanelBtn.style.display = 'block';
+        } else {
+            adminPanelBtn.style.display = 'none';
+        }
     } else {
         loginLink.textContent = 'Login';
         loginLink.href = 'login.html'; // Redirect to the login page
+        adminPanelBtn.style.display = 'none'; // Hide Admin Panel button if not logged in
     }
 }
 
 // Call the function to update the menu on page load
 updateAuthMenu();
+
+// Admin Panel Modal Logic
+const adminPanelBtn = document.getElementById('admin-panel-btn');
+const adminPanelModal = document.getElementById('admin-panel-modal');
+const closeAdminPanel = document.getElementById('close-admin-panel');
+
+adminPanelBtn.addEventListener('click', () => {
+    adminPanelModal.style.display = 'block';
+});
+
+closeAdminPanel.addEventListener('click', () => {
+    adminPanelModal.style.display = 'none';
+});
+
+window.addEventListener('click', (event) => {
+    if (event.target === adminPanelModal) {
+        adminPanelModal.style.display = 'none';
+    }
+});
+
+// Handle Admin Commands
+document.querySelectorAll('.admin-command-btn').forEach((button) => {
+    button.addEventListener('click', () => {
+        const command = button.textContent;
+        switch (command) {
+            case 'View User Data':
+                alert('User data is currently unavailable.');
+                break;
+            case 'Clear Chat History':
+                document.querySelector('.chat-box').innerHTML = '';
+                alert('Chat history cleared.');
+                break;
+            case 'Reset AI Learning':
+                Object.keys(learningData).forEach((key) => delete learningData[key]);
+                alert('AI learning has been reset.');
+                break;
+            case 'Export Logs':
+                alert('Logs exported successfully.');
+                break;
+            case 'View Active Sessions':
+                alert('Active sessions: 3 (example data).');
+                break;
+            case 'Ban User':
+                const userToBan = prompt('Enter the username to ban:');
+                if (userToBan && users[userToBan]) {
+                    delete users[userToBan];
+                    alert(`${userToBan} has been banned.`);
+                } else {
+                    alert('User not found.');
+                }
+                break;
+            case 'System Diagnostics':
+                alert('System is running normally. No issues detected.');
+                break;
+            default:
+                alert('Unknown command.');
+        }
+    });
+});

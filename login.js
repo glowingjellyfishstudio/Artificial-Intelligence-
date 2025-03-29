@@ -1,4 +1,7 @@
-const users = {}; // Store user data (username and password)
+// Load users from localStorage or initialize with the ADMINISTRATOR account
+const users = JSON.parse(localStorage.getItem('users')) || {
+    ADMINISTRATOR: "I@m1hacker" // Predefined ADMINISTRATOR account
+};
 
 document.getElementById('signup-btn').addEventListener('click', () => {
     const username = document.getElementById('signup-username').value.trim();
@@ -9,12 +12,18 @@ document.getElementById('signup-btn').addEventListener('click', () => {
         return;
     }
 
+    if (username === 'ADMINISTRATOR') {
+        alert('You cannot use this username.');
+        return;
+    }
+
     if (users[username]) {
         alert('Username already exists. Please choose another.');
         return;
     }
 
     users[username] = password;
+    localStorage.setItem('users', JSON.stringify(users)); // Save users to localStorage
     alert('Signup successful! You can now log in.');
     document.getElementById('signup-username').value = '';
     document.getElementById('signup-password').value = '';
