@@ -1,7 +1,7 @@
 let lastMessage = '';
 let spamCount = 0;
 
-const rudeWords = ['bad']; // Simplified list of rude words
+const rudeWords = ['bad', 'stupid', 'dumb', 'idiot', 'hate']; // Extended list of rude words
 
 document.getElementById('send-btn').addEventListener('click', sendMessage);
 
@@ -11,6 +11,22 @@ document.getElementById('user-input').addEventListener('keydown', (event) => {
         sendMessage();
     }
 });
+
+// Request notification permission on page load
+if (Notification && Notification.permission !== 'granted') {
+    Notification.requestPermission().then((permission) => {
+        if (permission !== 'granted') {
+            console.log('Notification permission denied.');
+        }
+    });
+}
+
+// Function to send a browser notification
+function sendNotification(title, message) {
+    if (Notification && Notification.permission === 'granted') {
+        new Notification(title, { body: message });
+    }
+}
 
 function sendMessage() {
     const userInput = document.getElementById('user-input').value.trim();
@@ -174,6 +190,7 @@ function displayAITypingEffect(response) {
     setTimeout(() => {
         chatBox.removeChild(typingElement); // Remove "AI is typing..." message
         displayMessage('AI', response); // Display the actual AI response
+        sendNotification('AI Response', response); // Send a notification
     }, 1500); // Simulate a 1.5-second delay
 }
 
