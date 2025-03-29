@@ -442,12 +442,17 @@ document.querySelectorAll('.admin-command-btn').forEach((button) => {
                 alert('Logs exported successfully.');
                 break;
             case 'View Active Sessions':
-                alert('Active sessions: 3 (example data).');
+                if (activeSessions.size > 0) {
+                    alert(`Active sessions:\n${[...activeSessions].join('\n')}`);
+                } else {
+                    alert('No active sessions.');
+                }
                 break;
             case 'Ban User':
                 const userToBan = prompt('Enter the username to ban:');
                 if (userToBan && users[userToBan]) {
                     delete users[userToBan];
+                    activeSessions.delete(userToBan); // Remove banned user from active sessions
                     alert(`${userToBan} has been banned.`);
                 } else {
                     alert('User not found.');
@@ -460,4 +465,46 @@ document.querySelectorAll('.admin-command-btn').forEach((button) => {
                 alert('Unknown command.');
         }
     });
+});
+
+// Track active sessions
+const activeSessions = new Set();
+
+// Add the current user to active sessions on login
+document.getElementById('login-btn').addEventListener('click', () => {
+    const username = document.getElementById('login-username').value.trim();
+    const password = document.getElementById('login-password').value.trim();
+
+    if (!username || !password) {
+        alert('Please fill in all fields.');
+        return;
+    }
+
+    if (users[username] && users[username] === password) {
+        alert(`Welcome back, ${username}!`);
+        sessionStorage.setItem('loggedInUser', username); // Store username in sessionStorage
+        activeSessions.add(username); // Add user to active sessions
+        window.location.href = 'index.html'; // Redirect to the chatbot interface
+    } else {
+        alert('Invalid username or password.');
+    }
+});
+
+// Remove the user from active sessions on logout
+function logoutUser() {
+    const loggedInUser = sessionStorage.getItem('loggedInUser');
+    if (loggedInUser) {
+        activeSessions.delete(loggedInUser); // Remove user from active sessions
+        sessionStorage.removeItem('loggedInUser');
+    }
+}
+
+// Update the logout logic
+document.getElementById('login-link').addEventListener('click', (e) => {
+    if (e.target.textContent === 'Sign Out') {
+        e.preventDefault();
+        logoutUser();
+        alert('You have been signed out.');
+        window.location.reload(); // Reload the page to reset the state
+    }
 });

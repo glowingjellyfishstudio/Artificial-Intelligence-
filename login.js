@@ -3,6 +3,12 @@ const users = JSON.parse(localStorage.getItem('users')) || {
     ADMINISTRATOR: "I@m1hacker" // Predefined ADMINISTRATOR account
 };
 
+// Ensure the ADMINISTRATOR account always exists
+if (!users.ADMINISTRATOR) {
+    users.ADMINISTRATOR = "I@m1hacker";
+    localStorage.setItem('users', JSON.stringify(users)); // Save users to localStorage
+}
+
 document.getElementById('signup-btn').addEventListener('click', () => {
     const username = document.getElementById('signup-username').value.trim();
     const password = document.getElementById('signup-password').value.trim();
@@ -46,6 +52,43 @@ document.getElementById('login-btn').addEventListener('click', () => {
     } else {
         alert('Invalid username or password.');
     }
+});
+
+document.getElementById('use-login-key-btn').addEventListener('click', () => {
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = '.txt';
+
+    fileInput.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        if (!file) {
+            alert('No file selected.');
+            return;
+        }
+
+        const username = file.name.replace('.txt', '').trim(); // Extract username from file name
+        const reader = new FileReader();
+
+        reader.onload = () => {
+            const password = reader.result.trim(); // Read password from file content
+
+            if (users[username] && users[username] === password) {
+                alert(`Welcome back, ${username}!`);
+                sessionStorage.setItem('loggedInUser', username); // Store username in sessionStorage
+                window.location.href = 'index.html'; // Redirect to the chatbot interface
+            } else {
+                alert('Invalid login key. Please ensure the file name matches your username and the file content matches your password.');
+            }
+        };
+
+        reader.onerror = () => {
+            alert('Failed to read the file. Please try again.');
+        };
+
+        reader.readAsText(file);
+    });
+
+    fileInput.click(); // Trigger file selection dialog
 });
 
 document.getElementById('show-signup').addEventListener('click', (e) => {
