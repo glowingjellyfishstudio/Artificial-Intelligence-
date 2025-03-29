@@ -118,16 +118,51 @@ function addToLearning(input, response) {
     learningData[lowerInput] = response;
 }
 
+// Load chat history from localStorage
+function loadChatHistory() {
+    const chatHistory = JSON.parse(localStorage.getItem('chatHistory')) || [];
+    const chatBox = document.querySelector('.chat-box');
+    chatHistory.forEach(({ sender, message }) => {
+        const messageElement = document.createElement('p');
+        messageElement.textContent = `${sender}: ${message}`;
+        messageElement.classList.add('fade-in');
+        chatBox.appendChild(messageElement);
+    });
+    chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
+}
+
+// Save chat history to localStorage
+function saveChatHistory(sender, message) {
+    const chatHistory = JSON.parse(localStorage.getItem('chatHistory')) || [];
+    chatHistory.push({ sender, message });
+    localStorage.setItem('chatHistory', JSON.stringify(chatHistory));
+}
+
+// Update displayMessage to save messages
 function displayMessage(sender, message) {
     const chatBox = document.querySelector('.chat-box');
     const messageElement = document.createElement('p');
     messageElement.textContent = `${sender}: ${message}`;
-    messageElement.classList.add('fade-in'); // Add fade-in class
+    messageElement.classList.add('fade-in');
     chatBox.appendChild(messageElement);
     chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
+    saveChatHistory(sender, message); // Save message to chat history
 }
 
-// Add AI typing effect
+// Clear chat history
+document.querySelectorAll('.admin-command-btn').forEach((button) => {
+    button.addEventListener('click', () => {
+        if (button.textContent === 'Clear Chat History') {
+            localStorage.removeItem('chatHistory'); // Clear chat history from localStorage
+            document.querySelector('.chat-box').innerHTML = ''; // Clear chat box
+            alert('Chat history cleared.');
+        }
+    });
+});
+
+// Load chat history on page load
+window.addEventListener('load', loadChatHistory);
+
 function displayAITypingEffect(response) {
     const chatBox = document.querySelector('.chat-box');
     const typingElement = document.createElement('p');
@@ -431,7 +466,8 @@ document.querySelectorAll('.admin-command-btn').forEach((button) => {
                 alert('User data is currently unavailable.');
                 break;
             case 'Clear Chat History':
-                document.querySelector('.chat-box').innerHTML = '';
+                localStorage.removeItem('chatHistory'); // Clear chat history from localStorage
+                document.querySelector('.chat-box').innerHTML = ''; // Clear chat box
                 alert('Chat history cleared.');
                 break;
             case 'Reset AI Learning':
