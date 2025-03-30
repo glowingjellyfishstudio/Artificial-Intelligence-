@@ -12,21 +12,6 @@ document.getElementById('user-input').addEventListener('keydown', (event) => {
     }
 });
 
-// Request notification permission on page load
-if (Notification && Notification.permission !== 'granted') {
-    Notification.requestPermission().then((permission) => {
-        if (permission !== 'granted') {
-            console.log('Notification permission denied.');
-        }
-    });
-}
-
-// Function to send a browser notification
-function sendNotification(title, message) {
-    if (Notification && Notification.permission === 'granted') {
-        new Notification(title, { body: message });
-    }
-}
 
 function sendMessage() {
     const userInput = document.getElementById('user-input').value.trim();
@@ -190,7 +175,7 @@ function displayAITypingEffect(response) {
     setTimeout(() => {
         chatBox.removeChild(typingElement); // Remove "AI is typing..." message
         displayMessage('AI', response); // Display the actual AI response
-        sendNotification('AI Response', response); // Send a notification
+        // sendNotification('AI Response', response); // Send a notification
     }, 1500); // Simulate a 1.5-second delay
 }
 
