@@ -212,4 +212,6 @@ const predefinedResponses = {
     "take a point": "Sure! What topic should the point be about?",
     "take a credit": "Sure! What topic should the credit be about?",
     "practise a language": "That's great! Which language are you practicing?",
-    };
+    "can you remember what you say": "No, I can't remember what I say. I don't have memory.",
+    "can you remember what i say": "No, I can't remember what you say. I don't have memory.",
+};
