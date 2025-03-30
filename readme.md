@@ -6,6 +6,7 @@ Welcome to the AI Chatbot project! This application is designed to provide a per
 
 - **Chat Interface**: Interact with the chatbot for advice, brainstorming, and assistance.
 - **Login and Signup**: Securely create an account or log in to access personalized features.
+- **Login Key Support**: Use a secure login key file for authentication.
 - **Language Support**: Translate the interface into multiple languages.
 - **Theme Customization**: Switch between day and night themes.
 - **Feedback System**: Provide feedback to improve the chatbot.
@@ -26,7 +27,7 @@ Welcome to the AI Chatbot project! This application is designed to provide a per
 ## How to Use
 
 1. **Home Page**: Start at `home.html` to navigate to different sections of the application.
-2. **Login or Signup**: Create an account or log in via `login.html`.
+2. **Login or Signup**: Create an account or log in via `login.html`. You can also use a login key file for authentication.
 3. **Chat**: Use `index.html` to interact with the chatbot.
 4. **Customize**: Change the theme or language using the menu options.
 5. **Feedback**: Provide feedback through the menu.
