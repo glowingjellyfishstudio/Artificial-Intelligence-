@@ -546,3 +546,12 @@ document.getElementById('login-link').addEventListener('click', (e) => {
         window.location.reload(); // Reload the page to reset the state
     }
 });
+
+const targetElement = document.querySelector('#targetElementId'); // Replace with the actual selector
+if (targetElement) {
+    targetElement.addEventListener('click', () => {
+        // ...existing code for the event handler...
+    });
+} else {
+    console.error('Target element not found in the DOM.');
+}

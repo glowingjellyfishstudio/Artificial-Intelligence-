@@ -214,4 +214,13 @@ const predefinedResponses = {
     "practise a language": "That's great! Which language are you practicing?",
     "can you remember what you say": "No, I can't remember what I say. I don't have memory.",
     "can you remember what i say": "No, I can't remember what you say. I don't have memory.",
+    "can you remember": "No, I can't remember. I don't have memory.",
+    "can you forget": "No, I can't forget. I don't have memory.",
+    "can you recall": "No, I can't recall. I don't have memory.",
+    "can you remind me": "No, I can't remind you. I don't have memory.",
+    "can you remind": "No, I can't remind. I don't have memory.",
+    "can you alert": "No, I can't alert. I don't have memory.",
+    "can you notify": "No, I can't notify. I don't have memory.",
+    "can you message": "No, I can't message. I don't have memory.",
+    "can you converse": "No, I can't converse. I don't have memory.",
 };
