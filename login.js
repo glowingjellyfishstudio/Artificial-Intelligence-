@@ -9,6 +9,10 @@ if (!users.ADMINISTRATOR) {
     localStorage.setItem('users', JSON.stringify(users)); // Save users to localStorage
 }
 
+function hashPassword(password) {
+    return btoa(password); // Simple base64 encoding for demonstration (use a stronger hashing algorithm in production)
+}
+
 document.getElementById('signup-btn').addEventListener('click', () => {
     const username = document.getElementById('signup-username').value.trim();
     const password = document.getElementById('signup-password').value.trim();
@@ -28,7 +32,7 @@ document.getElementById('signup-btn').addEventListener('click', () => {
         return;
     }
 
-    users[username] = password;
+    users[username] = hashPassword(password); // Store hashed password
     localStorage.setItem('users', JSON.stringify(users)); // Save users to localStorage
     alert('Signup successful! You can now log in.');
     document.getElementById('signup-username').value = '';
@@ -45,7 +49,7 @@ document.getElementById('login-btn').addEventListener('click', () => {
         return;
     }
 
-    if (users[username] && users[username] === password) {
+    if (users[username] && users[username] === hashPassword(password)) {
         alert(`Welcome back, ${username}!`);
         sessionStorage.setItem('loggedInUser', username); // Store username in sessionStorage
         window.location.href = 'index.html'; // Redirect to the chatbot interface

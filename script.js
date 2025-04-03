@@ -67,9 +67,9 @@ document.querySelector('#menu-list').addEventListener('click', (event) => {
         const feedbackText = prompt('Please provide your feedback:');
         if (feedbackText && feedbackText.trim() !== '') {
             alert('Thank you for your feedback!');
-            console.log('User Feedback:', feedbackText);
+            console.log('User Feedback:', feedbackText.trim()); // Trim feedback
         } else {
-            alert('Feedback cannot be empty.');
+            alert('Feedback cannot be empty or just spaces.');
         }
     }
 });
@@ -409,6 +409,7 @@ addTranslation('es', {
     privacy: "Política de Privacidad",
 });
 
+// Ensure admin panel button visibility is robust
 function updateAuthMenu() {
     const loginLink = document.getElementById('login-link');
     const adminPanelBtn = document.getElementById('admin-panel-btn');
@@ -421,19 +422,14 @@ function updateAuthMenu() {
             e.preventDefault();
             sessionStorage.removeItem('loggedInUser');
             alert('You have been signed out.');
-            window.location.reload(); // Reload the page to reset the state
+            window.location.reload();
         });
 
-        // Show Admin Panel button only for "ADMINISTRATOR"
-        if (loggedInUser === 'ADMINISTRATOR') {
-            adminPanelBtn.style.display = 'block';
-        } else {
-            adminPanelBtn.style.display = 'none';
-        }
+        adminPanelBtn.style.display = loggedInUser === 'ADMINISTRATOR' ? 'block' : 'none';
     } else {
         loginLink.textContent = 'Login';
-        loginLink.href = 'login.html'; // Redirect to the login page
-        adminPanelBtn.style.display = 'none'; // Hide Admin Panel button if not logged in
+        loginLink.href = 'login.html';
+        adminPanelBtn.style.display = 'none';
     }
 }
 
