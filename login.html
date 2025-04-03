@@ -1,29 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Metadata and linking styles -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login or Sign Up</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Display current time and date -->
+    <div id="time-date" class="time-date"></div>
+    <!-- Container for authentication forms -->
     <div class="auth-container">
+        <!-- Login form -->
         <div id="login-form" class="auth-form">
             <h2>Welcome to Artificial Intelligence</h2>
+            <!-- Input fields for username and password -->
             <input type="text" id="login-username" placeholder="Username" />
             <input type="password" id="login-password" placeholder="Password" />
+            <!-- Buttons for login and alternative login method -->
             <button id="login-btn">Login</button>
             <button id="use-login-key-btn">Use Login Key</button>
+            <!-- Link to switch to the signup form -->
             <p>Don't have an account? <a href="#" id="show-signup">Sign up</a></p>
         </div>
+        <!-- Signup form (hidden by default) -->
         <div id="signup-form" class="auth-form" style="display: none;">
             <h2>Welcome to Artificial Intelligence</h2>
+            <!-- Input fields for new username and password -->
             <input type="text" id="signup-username" placeholder="Username" />
             <input type="password" id="signup-password" placeholder="Password" />
+            <!-- Button to create a new account -->
             <button id="signup-btn">Sign Up</button>
+            <!-- Link to switch back to the login form -->
             <p>Already have an account? <a href="#" id="show-login">Login</a></p>
         </div>
     </div>
+    <!-- Link to the JavaScript file for functionality -->
     <script src="login.js"></script>
+    <script>
+        console.log("Login page loaded."); // Log when the page is loaded
+
+        // Update the time and date dynamically
+        function updateTimeDate() {
+            const now = new Date();
+            const timeDateElement = document.getElementById('time-date');
+            timeDateElement.textContent = now.toLocaleString(); // Display time and date
+            console.log(`Time and date updated: ${now.toLocaleString()}`); // Log the update
+        }
+        setInterval(updateTimeDate, 1000); // Update every second
+        updateTimeDate(); // Initial call
+    </script>
 </body>
 </html>

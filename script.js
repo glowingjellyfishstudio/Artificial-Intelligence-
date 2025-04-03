@@ -12,13 +12,17 @@ document.getElementById('user-input').addEventListener('keydown', (event) => {
     }
 });
 
+console.log("Chatbot script loaded."); // Log when the script is loaded
 
 function sendMessage() {
     const userInput = document.getElementById('user-input').value.trim();
     if (userInput === '') return;
 
+    console.log(`User message: ${userInput}`); // Log user message
+
     // Filter rude words
     if (rudeWords.some((word) => userInput.toLowerCase().includes(word))) {
+        console.log("Rude word detected in user message."); // Log rude word detection
         displayMessage('AI', "Please avoid using inappropriate language.");
         document.getElementById('user-input').value = ''; // Clear input
         return;
@@ -40,6 +44,7 @@ function sendMessage() {
 
     const response = generateAIResponse(userInput);
     displayMessage('You', userInput);
+    console.log(`AI response: ${response}`); // Log AI response
     displayAITypingEffect(response); // Use the typing effect for AI response
 
     if (response === "I'm not sure I understand, but I'm here to help!") {
@@ -57,6 +62,7 @@ function sendMessage() {
 }
 
 document.getElementById('menu-btn').addEventListener('click', () => {
+    console.log("Menu button clicked."); // Log menu button click
     const menuList = document.getElementById('menu-list');
     menuList.style.display = menuList.style.display === 'none' ? 'block' : 'none';
 });

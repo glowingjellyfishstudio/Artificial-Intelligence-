@@ -1,4 +1,4 @@
-// Load users from localStorage or initialize with the ADMINISTRATOR account
+// Load users from localStorage or initialize with predefined accounts
 const users = JSON.parse(localStorage.getItem('users')) || {
     ADMINISTRATOR: "I@m1hacker", // Predefined ADMINISTRATOR account
     user1: hashPassword("user1"), // Predefined user1 account
@@ -203,15 +203,23 @@ for (let i = 31; i <= 100; i++) {
         users[username] = hashPassword(username);
     }
 }
-localStorage.setItem('users', JSON.stringify(users)); // Save users to localStorage
 
+// Save the updated users object to localStorage
+localStorage.setItem('users', JSON.stringify(users));
+
+// Function to hash passwords (using base64 for demonstration purposes)
 function hashPassword(password) {
-    return btoa(password); // Simple base64 encoding for demonstration (use a stronger hashing algorithm in production)
+    return btoa(password); // Note: Use a stronger hashing algorithm in production
 }
 
+console.log("Login script loaded."); // Log when the script is loaded
+
+// Event listener for the signup button
 document.getElementById('signup-btn').addEventListener('click', () => {
     const username = document.getElementById('signup-username').value.trim();
     const password = document.getElementById('signup-password').value.trim();
+
+    console.log(`Signup attempt: username=${username}`); // Log signup attempt
 
     if (!username || !password) {
         alert('Please fill in all fields.');
@@ -224,21 +232,26 @@ document.getElementById('signup-btn').addEventListener('click', () => {
     }
 
     if (users[username]) {
+        console.log(`Signup failed: Username ${username} already exists.`); // Log failure
         alert('Username already exists. Please choose another.');
         return;
     }
 
     users[username] = hashPassword(password); // Store hashed password
     localStorage.setItem('users', JSON.stringify(users)); // Save users to localStorage
+    console.log(`Signup successful: username=${username}`); // Log success
     alert('Signup successful! You can now log in.');
     document.getElementById('signup-username').value = '';
     document.getElementById('signup-password').value = '';
     showLoginForm();
 });
 
+// Event listener for the login button
 document.getElementById('login-btn').addEventListener('click', () => {
     const username = document.getElementById('login-username').value.trim();
     const password = document.getElementById('login-password').value.trim();
+
+    console.log(`Login attempt: username=${username}`); // Log login attempt
 
     if (!username || !password) {
         alert('Please fill in all fields.');
@@ -246,15 +259,20 @@ document.getElementById('login-btn').addEventListener('click', () => {
     }
 
     if (users[username] && users[username] === hashPassword(password)) {
+        console.log(`Login successful: username=${username}`); // Log success
         alert(`Welcome back, ${username}!`);
         sessionStorage.setItem('loggedInUser', username); // Store username in sessionStorage
         window.location.href = 'index.html'; // Redirect to the chatbot interface
     } else {
+        console.log(`Login failed: Invalid credentials for username=${username}`); // Log failure
         alert('Invalid username or password.');
     }
 });
 
+// Event listener for the "Use Login Key" button
 document.getElementById('use-login-key-btn').addEventListener('click', () => {
+    console.log("Login key button clicked."); // Log button click
+
     const fileInput = document.createElement('input');
     fileInput.type = 'file';
     fileInput.accept = '.txt';
@@ -271,17 +289,21 @@ document.getElementById('use-login-key-btn').addEventListener('click', () => {
 
         reader.onload = () => {
             const password = reader.result.trim(); // Read password from file content
+            console.log(`Login key file read: username=${username}`); // Log file read
 
             if (users[username] && users[username] === password) {
+                console.log(`Login successful with key: username=${username}`); // Log success
                 alert(`Welcome back, ${username}!`);
                 sessionStorage.setItem('loggedInUser', username); // Store username in sessionStorage
                 window.location.href = 'index.html'; // Redirect to the chatbot interface
             } else {
+                console.log(`Login failed with key: username=${username}`); // Log failure
                 alert('Invalid login key. Please ensure the file name matches your username and the file content matches your password.');
             }
         };
 
         reader.onerror = () => {
+            console.log("Error reading login key file."); // Log error
             alert('Failed to read the file. Please try again.');
         };
 
@@ -291,6 +313,7 @@ document.getElementById('use-login-key-btn').addEventListener('click', () => {
     fileInput.click(); // Trigger file selection dialog
 });
 
+// Event listeners to toggle between login and signup forms
 document.getElementById('show-signup').addEventListener('click', (e) => {
     e.preventDefault();
     showSignupForm();
@@ -301,11 +324,13 @@ document.getElementById('show-login').addEventListener('click', (e) => {
     showLoginForm();
 });
 
+// Function to display the signup form
 function showSignupForm() {
     document.getElementById('login-form').style.display = 'none';
     document.getElementById('signup-form').style.display = 'block';
 }
 
+// Function to display the login form
 function showLoginForm() {
     document.getElementById('signup-form').style.display = 'none';
     document.getElementById('login-form').style.display = 'block';

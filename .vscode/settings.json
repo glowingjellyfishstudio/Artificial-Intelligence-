@@ -1,3 +1,4 @@
 {
+    // Automatically save files after a delay
     "files.autoSave": "afterDelay"
 }

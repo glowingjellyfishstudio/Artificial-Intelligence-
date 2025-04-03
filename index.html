@@ -1,32 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Metadata and linking styles -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Chatbot</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Display current time and date -->
+    <div id="time-date" class="time-date"></div>
+    <!-- Main container for the chatbot interface -->
     <div class="main-container">
+        <!-- Header section with menu and greeting -->
         <header class="main-header">
+            <!-- Menu button and dropdown -->
             <button id="menu-btn" class="menu-btn">☰</button>
             <ul id="menu-list" class="menu-list" style="display: none;">
+                <!-- Links and options in the menu -->
                 <li><a href="login.html" id="login-link">Login</a></li>
                 <li><a href="terms.html">Terms and Conditions</a></li>
                 <li><a href="privacy.html">Privacy Policy</a></li>
                 <li><button id="feedback-btn" class="menu-feedback-btn">Give Feedback</button></li>
-                <li><label>
-                    <input type="checkbox" id="model-training-text" checked> Model training on text
-                </label></li>
-                <li><label>
-                    <input type="checkbox" id="model-training-voice" checked> Model training on voice
-                </label></li>
-                <li><label>
-                    <input type="checkbox" id="personalisation" checked> Personalisation
-                </label></li>
+                <!-- Checkboxes for model training and personalization -->
+                <li><label><input type="checkbox" id="model-training-text" checked> Model training on text</label></li>
+                <li><label><input type="checkbox" id="model-training-voice" checked> Model training on voice</label></li>
+                <li><label><input type="checkbox" id="personalisation" checked> Personalisation</label></li>
+                <!-- Dropdowns for language and theme selection -->
                 <li>
                     <label for="language-select">Language:</label>
                     <select id="language-select">
+                        <!-- Language options -->
                         <option value="en" selected>English</option>
                         <option value="ar">Arabic</option>
                         <option value="eu">Basque</option>
@@ -53,19 +57,24 @@
                         <option value="night">Night</option>
                     </select>
                 </li>
+                <!-- Admin panel button (hidden by default) -->
                 <li><button id="admin-panel-btn" class="menu-feedback-btn" style="display: none;">Admin Panel</button></li>
             </ul>
+            <!-- Greeting and prompt -->
             <h1>Hi <span id="user-name">there</span>! Artificial Intelligence here.</h1>
             <p>What’s on your mind today?</p>
         </header>
+        <!-- Chat interface -->
         <div class="input-container">
             <div class="chat-box">
                 <!-- Chat messages will appear here -->
             </div>
+            <!-- Input bar for user messages -->
             <div class="input-bar">
                 <input type="text" id="user-input" placeholder="Message Copilot" />
                 <button id="send-btn" class="send-btn">➤</button>
             </div>
+            <!-- Action buttons for quick responses -->
             <div class="action-buttons">
                 <button class="action-btn">Write a first draft</button>
                 <button class="action-btn">Get advice</button>
@@ -77,16 +86,19 @@
                 <button class="action-btn">Take a quiz</button>
             </div>
         </div>
+        <!-- Footer with disclaimers -->
         <footer class="main-footer">
             <p>Artificial Intelligence may make mistakes.</p>
             <p>By interacting with Artificial Intelligence, you agree to the <a href="terms.html">Terms of Use</a>. See our <a href="privacy.html">Privacy Statement</a>.</p>
         </footer>
     </div>
+    <!-- Admin panel modal (hidden by default) -->
     <div id="admin-panel-modal" class="modal" style="display: none;">
         <div class="modal-content">
             <span id="close-admin-panel" class="close-btn">&times;</span>
             <h2>Admin Panel</h2>
             <ul>
+                <!-- Admin commands -->
                 <li><button class="admin-command-btn">View User Data</button></li>
                 <li><button class="admin-command-btn">Clear Chat History</button></li>
                 <li><button class="admin-command-btn">Reset AI Learning</button></li>
@@ -97,7 +109,21 @@
             </ul>
         </div>
     </div>
+    <!-- Link to JavaScript files -->
     <script src="responses.js"></script>
     <script src="script.js"></script>
+    <script>
+        console.log("Chatbot interface loaded."); // Log when the page is loaded
+
+        // Update the time and date dynamically
+        function updateTimeDate() {
+            const now = new Date();
+            const timeDateElement = document.getElementById('time-date');
+            timeDateElement.textContent = now.toLocaleString(); // Display time and date
+            console.log(`Time and date updated: ${now.toLocaleString()}`); // Log the update
+        }
+        setInterval(updateTimeDate, 1000); // Update every second
+        updateTimeDate(); // Initial call
+    </script>
 </body>
 </html>

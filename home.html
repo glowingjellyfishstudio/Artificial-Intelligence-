@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Display current time and date -->
+    <div id="time-date" class="time-date"></div>
     <div class="main-container">
         <header class="main-header">
             <h1 class="fade-in">Welcome to AI Chatbot</h1>
@@ -62,5 +64,18 @@
             <p>&copy; 2025 AI Chatbot. All rights reserved.</p>
         </footer>
     </div>
+    <script>
+        console.log("Home page loaded."); // Log when the page is loaded
+
+        // Update the time and date dynamically
+        function updateTimeDate() {
+            const now = new Date();
+            const timeDateElement = document.getElementById('time-date');
+            timeDateElement.textContent = now.toLocaleString(); // Display time and date
+            console.log(`Time and date updated: ${now.toLocaleString()}`); // Log the update
+        }
+        setInterval(updateTimeDate, 1000); // Update every second
+        updateTimeDate(); // Initial call
+    </script>
 </body>
 </html>
