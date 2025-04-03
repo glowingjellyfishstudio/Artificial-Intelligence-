@@ -13,8 +13,10 @@ Welcome to the AI Chatbot project! This application is designed to provide a per
 - **Theme Customization**: Switch between day and night themes.
 - **Feedback System**: Provide feedback to improve the chatbot.
 - **Dynamic Learning**: The chatbot can learn new responses based on user input (if enabled).
+- **Cookie Policy Management**: Users can customize their cookie preferences or accept all cookies.
 - **Privacy and Terms**: Clear policies to ensure user trust.
 - **Real-Time Clock**: Displays the current time and date on all pages.
+- **Admin Panel**: Manage user data, reset AI learning, and perform system diagnostics.
 
 ## Predefined Users
 
@@ -34,8 +36,8 @@ The application includes predefined users for testing purposes. Each user has a 
 
 ## Recent Updates
 
-- **User-Specific Chat History**: Chat history is now stored separately for each user, ensuring privacy and personalization.
-- **Real-Time Clock**: Added a clock to display the current time and date on all pages.
+- **Cookie Policy Management**: Added a cookie banner to allow users to customize or accept cookies.
+- **Admin Panel Enhancements**: Improved admin panel functionality for better user and system management.
 - **Improved Logging**: Added logs to track user actions and system events for better debugging and monitoring.
 
 ## License
