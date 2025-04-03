@@ -125,10 +125,19 @@ function addToLearning(input, response) {
     learningData[lowerInput] = response;
 }
 
-// Load chat history from localStorage
+// Load chat history for the logged-in user from localStorage
 function loadChatHistory() {
-    const chatHistory = JSON.parse(localStorage.getItem('chatHistory')) || [];
+    const loggedInUser = sessionStorage.getItem('loggedInUser');
+    if (!loggedInUser) {
+        console.log("No logged-in user. Chat history not loaded.");
+        return;
+    }
+
+    const chatHistoryKey = `chatHistory_${loggedInUser}`; // Key specific to the user
+    const chatHistory = JSON.parse(localStorage.getItem(chatHistoryKey)) || [];
     const chatBox = document.querySelector('.chat-box');
+    chatBox.innerHTML = ''; // Clear existing chat messages
+
     chatHistory.forEach(({ sender, message }) => {
         const messageElement = document.createElement('p');
         messageElement.textContent = `${sender}: ${message}`;
@@ -138,14 +147,21 @@ function loadChatHistory() {
     chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
 }
 
-// Save chat history to localStorage
+// Save chat history for the logged-in user to localStorage
 function saveChatHistory(sender, message) {
-    const chatHistory = JSON.parse(localStorage.getItem('chatHistory')) || [];
+    const loggedInUser = sessionStorage.getItem('loggedInUser');
+    if (!loggedInUser) {
+        console.log("No logged-in user. Chat history not saved.");
+        return;
+    }
+
+    const chatHistoryKey = `chatHistory_${loggedInUser}`; // Key specific to the user
+    const chatHistory = JSON.parse(localStorage.getItem(chatHistoryKey)) || [];
     chatHistory.push({ sender, message });
-    localStorage.setItem('chatHistory', JSON.stringify(chatHistory));
+    localStorage.setItem(chatHistoryKey, JSON.stringify(chatHistory));
 }
 
-// Update displayMessage to save messages
+// Update displayMessage to save messages for the logged-in user
 function displayMessage(sender, message) {
     const chatBox = document.querySelector('.chat-box');
     const messageElement = document.createElement('p');
@@ -153,14 +169,21 @@ function displayMessage(sender, message) {
     messageElement.classList.add('fade-in');
     chatBox.appendChild(messageElement);
     chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
-    saveChatHistory(sender, message); // Save message to chat history
+    saveChatHistory(sender, message); // Save message to user-specific chat history
 }
 
-// Clear chat history
+// Clear chat history for the logged-in user
 document.querySelectorAll('.admin-command-btn').forEach((button) => {
     button.addEventListener('click', () => {
         if (button.textContent === 'Clear Chat History') {
-            localStorage.removeItem('chatHistory'); // Clear chat history from localStorage
+            const loggedInUser = sessionStorage.getItem('loggedInUser');
+            if (!loggedInUser) {
+                alert('No logged-in user. Cannot clear chat history.');
+                return;
+            }
+
+            const chatHistoryKey = `chatHistory_${loggedInUser}`; // Key specific to the user
+            localStorage.removeItem(chatHistoryKey); // Clear chat history from localStorage
             document.querySelector('.chat-box').innerHTML = ''; // Clear chat box
             alert('Chat history cleared.');
         }
@@ -470,7 +493,14 @@ document.querySelectorAll('.admin-command-btn').forEach((button) => {
                 alert('User data is currently unavailable.');
                 break;
             case 'Clear Chat History':
-                localStorage.removeItem('chatHistory'); // Clear chat history from localStorage
+                const loggedInUser = sessionStorage.getItem('loggedInUser');
+                if (!loggedInUser) {
+                    alert('No logged-in user. Cannot clear chat history.');
+                    return;
+                }
+
+                const chatHistoryKey = `chatHistory_${loggedInUser}`; // Key specific to the user
+                localStorage.removeItem(chatHistoryKey); // Clear chat history from localStorage
                 document.querySelector('.chat-box').innerHTML = ''; // Clear chat box
                 alert('Chat history cleared.');
                 break;

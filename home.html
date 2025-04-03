@@ -64,6 +64,32 @@
             <p>&copy; 2025 AI Chatbot. All rights reserved.</p>
         </footer>
     </div>
+    <!-- Cookie Policy Banner -->
+    <div id="cookie-banner" class="cookie-banner">
+        <p>We use cookies to enhance your experience. You can customize your preferences.</p>
+        <button id="customize-cookies-btn">Customize Cookies</button>
+        <button id="accept-cookies-btn">Accept All</button>
+    </div>
+    <div id="cookie-settings-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h2>Cookie Preferences</h2>
+            <form id="cookie-settings-form">
+                <label>
+                    <input type="checkbox" name="required" checked disabled> Required Cookies (Always Enabled)
+                </label><br>
+                <label>
+                    <input type="checkbox" name="analytics"> Analytics Cookies
+                </label><br>
+                <label>
+                    <input type="checkbox" name="personalization"> Personalization Cookies
+                </label><br>
+                <label>
+                    <input type="checkbox" name="advertising"> Advertising Cookies
+                </label><br>
+                <button type="button" id="save-cookie-settings-btn">Save Preferences</button>
+            </form>
+        </div>
+    </div>
     <script>
         console.log("Home page loaded."); // Log when the page is loaded
 
@@ -76,6 +102,49 @@
         }
         setInterval(updateTimeDate, 1000); // Update every second
         updateTimeDate(); // Initial call
+
+        // Cookie Banner Logic
+        const cookieBanner = document.getElementById('cookie-banner');
+        const cookieSettingsModal = document.getElementById('cookie-settings-modal');
+        const customizeCookiesBtn = document.getElementById('customize-cookies-btn');
+        const acceptCookiesBtn = document.getElementById('accept-cookies-btn');
+        const saveCookieSettingsBtn = document.getElementById('save-cookie-settings-btn');
+
+        // Check if cookies have already been accepted
+        if (localStorage.getItem('cookiesAccepted')) {
+            cookieBanner.style.display = 'none';
+        }
+
+        customizeCookiesBtn.addEventListener('click', () => {
+            cookieSettingsModal.style.display = 'block';
+        });
+
+        acceptCookiesBtn.addEventListener('click', () => {
+            localStorage.setItem('cookiesAccepted', true);
+            localStorage.setItem('cookiePreferences', JSON.stringify({ required: true, analytics: true, personalization: true, advertising: true }));
+            cookieBanner.style.display = 'none';
+            console.log('All cookies accepted.');
+        });
+
+        saveCookieSettingsBtn.addEventListener('click', () => {
+            const form = document.getElementById('cookie-settings-form');
+            const formData = new FormData(form);
+            const preferences = {};
+            for (const [key, value] of formData.entries()) {
+                preferences[key] = value === 'on';
+            }
+            localStorage.setItem('cookiePreferences', JSON.stringify(preferences));
+            localStorage.setItem('cookiesAccepted', true);
+            cookieSettingsModal.style.display = 'none';
+            cookieBanner.style.display = 'none';
+            console.log('Cookie preferences saved:', preferences);
+        });
+
+        window.addEventListener('click', (event) => {
+            if (event.target === cookieSettingsModal) {
+                cookieSettingsModal.style.display = 'none';
+            }
+        });
     </script>
 </body>
 </html>
