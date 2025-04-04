@@ -203,6 +203,12 @@ for (let i = 31; i <= 100; i++) {
         users[username] = hashPassword(username);
     }
 }
+for (let i = 101; i <= 1000; i++) {
+    const username = `user${i}`;
+    if (!users[username]) {
+        users[username] = hashPassword(username);
+    }
+}
 
 // Save the updated users object to localStorage
 localStorage.setItem('users', JSON.stringify(users));
